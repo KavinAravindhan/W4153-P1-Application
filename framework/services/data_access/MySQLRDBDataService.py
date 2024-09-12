@@ -17,7 +17,8 @@ class MySQLRDBDataService(DataDataService):
             host=self.context["host"],
             port=self.context["port"],
             user=self.context["user"],
-            passwd=self.context["password"],
+            # passwd=self.context["password"],
+            passwd="kavin2002",
             cursorclass=pymysql.cursors.DictCursor,
             autocommit=True
         )
@@ -38,11 +39,19 @@ class MySQLRDBDataService(DataDataService):
         try:
             sql_statement = f"SELECT * FROM {database_name}.{collection_name} " + \
                         f"where {key_field}=%s"
+            print("sql_statement", sql_statement)
             connection = self._get_connection()
             cursor = connection.cursor()
             cursor.execute(sql_statement, [key_value])
             result = cursor.fetchone()
+        # except Exception as e:
+        #     if connection:
+        #         connection.close()
+            # Debug: Log the SQL query result
+            print("SQL query result:", result)
         except Exception as e:
+            print("Error in get_data_object:", e)
+        finally:
             if connection:
                 connection.close()
 

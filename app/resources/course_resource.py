@@ -14,19 +14,22 @@ class CourseResource(BaseResource):
         # TODO -- Replace with dependency injection.
         #
         self.data_service = ServiceFactory.get_service("CourseResourceDataService")
-        self.database = "course_management"
+        self.database = "p1_database"
         self.collection = "course_sections"
         self.key_field="sis_course_id"
 
     def get_by_key(self, key: str) -> CourseSection:
 
         d_service = self.data_service
+        print("d_service =", d_service)
+        print("key =", key)
 
         result = d_service.get_data_object(
             self.database, self.collection, key_field=self.key_field, key_value=key
         )
+        print("result =", result)
 
         result = CourseSection(**result)
         return result
 
-
+# COMSW4153_001_2024_3

@@ -8,7 +8,7 @@ router = APIRouter()
 
 
 @router.get("/courses_sections/{course_id}", tags=["users"])
-async def get_courses(course_id: str) -> CourseSection:
+async def get_courses_sections(course_id: str) -> CourseSection:
 
     # TODO Do lifecycle management for singleton resource
     res = ServiceFactory.get_service("CourseResource")
