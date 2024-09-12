@@ -17,8 +17,8 @@ class MySQLRDBDataService(DataDataService):
             host=self.context["host"],
             port=self.context["port"],
             user=self.context["user"],
-            # passwd=self.context["password"],
-            passwd="kavin2002",
+            passwd=self.context["password"],
+            # passwd="kavin2002",
             cursorclass=pymysql.cursors.DictCursor,
             autocommit=True
         )
